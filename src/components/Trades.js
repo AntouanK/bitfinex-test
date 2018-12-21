@@ -44,7 +44,7 @@ class Trades extends Component {
     );
     const renderTrade = ({ ID, AMOUNT, PRICE, MTS }) => {
       const mtsDate = new Date(MTS);
-      const dateString = mtsDate.toDateString();
+      //const dateString = mtsDate.toDateString();
       const timeString = mtsDate.toTimeString().slice(0, 8);
       const mode = AMOUNT > 0 ? "buy" : "sell";
 
