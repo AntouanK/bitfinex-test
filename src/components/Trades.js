@@ -18,9 +18,13 @@ const tradeStyle = mode => ({
   backgroundColor:
     mode === "buy"
       ? "rgba(157, 194, 74, 0.05)"
-      : mode === "sell"
-        ? "rgba(225, 86, 86, 0.11)"
-        : ""
+      : mode === "buy-l"
+        ? "rgba(157, 194, 74, 0.25)"
+        : mode === "sell"
+          ? "rgba(225, 86, 86, 0.11)"
+          : mode === "sell-l"
+            ? "rgba(225, 86, 86, 0.31)"
+            : ""
 });
 const cellStyle = width => ({
   flex: "1 0 " + width,
@@ -46,7 +50,16 @@ class Trades extends Component {
       const mtsDate = new Date(MTS);
       //const dateString = mtsDate.toDateString();
       const timeString = mtsDate.toTimeString().slice(0, 8);
-      const mode = AMOUNT > 0 ? "buy" : "sell";
+      const mode =
+        AMOUNT >= 1
+          ? "buy-l"
+          : AMOUNT > 0
+            ? "buy"
+            : AMOUNT <= -1
+              ? "sell-l"
+              : AMOUNT <= 0
+                ? "sell"
+                : "";
 
       return (
         <div key={ID} style={tradeStyle(mode)}>
