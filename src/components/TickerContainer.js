@@ -1,9 +1,26 @@
 import Ticker from "../components/Ticker.js";
 import { connect } from "react-redux";
 
-const mapStateToProps = (state /*, ownProps*/) => {
+const mapStateToProps = (state, ownProps) => {
+  let notFound = true,
+    volume,
+    priceChange,
+    lastPrice;
+  const ticker = state.tickers.tickersByPair.get(ownProps.pair);
+
+  if (ticker !== undefined) {
+    notFound = false;
+    volume = ticker.VOLUME;
+    priceChange = ticker.DAILY_CHANGE;
+    lastPrice = ticker.LAST_PRICE;
+  }
+
   return {
-    counter: state
+    pair: ownProps.pair,
+    volume,
+    priceChange,
+    lastPrice,
+    notFound
   };
 };
 
