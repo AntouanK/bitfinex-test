@@ -1,11 +1,5 @@
 import React, { Component } from "react";
-import {
-  widgetBackground,
-  lightRed1,
-  lightRed2,
-  lightGreen1,
-  lightGreen2
-} from "../colors.js";
+import { widgetBackground, lightRed2, lightGreen2 } from "../colors.js";
 const MAX_BOOKS = 30;
 
 const mainWrapperStyle = {
