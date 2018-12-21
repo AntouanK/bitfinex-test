@@ -51,7 +51,7 @@ class Trades extends Component {
       return (
         <div key={ID} style={tradeStyle(mode)}>
           <div style={cellStyle("140px")}>{timeString}</div>
-          <div style={cellStyle("60px")}>{PRICE.toFixed(3)}</div>
+          <div style={cellStyle("60px")}>{PRICE.toFixed(1)}</div>
           <div style={cellStyle("60px")}>{Math.abs(AMOUNT).toFixed(4)}</div>
         </div>
       );
