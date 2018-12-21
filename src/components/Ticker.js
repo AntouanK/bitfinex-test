@@ -16,6 +16,7 @@ const columnStyle = {
 };
 const pairStyle = { fontSize: "x-large" };
 const lastPriceStyle = { fontSize: "x-large" };
+const volumeStyle = { textDecoration: "underline", margin: "0 4px" };
 
 //
 //
@@ -37,15 +38,7 @@ class Ticker extends Component {
             <div style={pairStyle}>{pair}</div>
             <div style={{ opacity: 0.7 }}>
               VOL
-              <span
-                style={{
-                  textDecoration: "underline",
-                  margin: "0 4px"
-                }}
-              >
-                {volume.toFixed(3)}
-              </span>{" "}
-              USD
+              <span style={volumeStyle}>{volume.toFixed(3)}</span> USD
             </div>
           </div>
           <div style={columnStyle}>

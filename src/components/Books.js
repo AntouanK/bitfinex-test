@@ -4,7 +4,7 @@ const MAX_BOOKS = 30;
 
 const mainWrapperStyle = {
   flex: "1 0 auto",
-  minWidth: "550px",
+  minWidth: "650px",
   display: "flex",
   flexDirection: "row",
   margin: "10px",
@@ -37,6 +37,10 @@ const cellStyle = width => ({
   padding: "0 6px",
   justifyContent: "center"
 });
+const precisionButtonStyle = {
+  cursor: "pointer",
+  fontSize: "large"
+};
 
 //
 //
@@ -51,6 +55,7 @@ const aggregateTotal = (prev, cur, i, list) => {
   }
   return list;
 };
+
 //
 //
 const renderBook = ({ mode, maxTotal }) => ({
@@ -76,7 +81,13 @@ const renderBook = ({ mode, maxTotal }) => ({
 //
 class Books extends Component {
   render() {
-    const { booksByPrice, lastPrice } = this.props;
+    const {
+      precision,
+      booksByPrice,
+      lastPrice,
+      setBooksPrecision
+    } = this.props;
+    const _booksByPrice = new Map();
     let booksSmaller = [];
     let booksBigger = [];
 
@@ -85,6 +96,24 @@ class Books extends Component {
       .filter(book => book.COUNT > 0)
       // get new copies of those books
       .map(book => Object.assign({}, book))
+      // round up for precision if needed
+      .map(book => {
+        if (precision !== 0) {
+          const multiplier = Math.pow(10, Math.abs(precision) - 1);
+          book.PRICE = Math.round(book.PRICE / multiplier) * multiplier;
+        }
+        return book;
+      })
+      .forEach(book => {
+        if (_booksByPrice.has(book.PRICE)) {
+          const existingBook = _booksByPrice.get(book.PRICE);
+          existingBook.AMOUNT += book.AMOUNT;
+        } else {
+          _booksByPrice.set(book.PRICE, book);
+        }
+      });
+
+    Array.from(_booksByPrice.values())
       // split them in 2 list, based on lastPrice
       .forEach(book => {
         if (book.PRICE > lastPrice) {
@@ -128,6 +157,22 @@ class Books extends Component {
 
     return (
       <div style={mainWrapperStyle}>
+        <div style={booksSideStyle}>
+          <div
+            style={precisionButtonStyle}
+            title="increase precision"
+            onClick={() => setBooksPrecision(precision + 1)}
+          >
+            +
+          </div>
+          <div
+            style={precisionButtonStyle}
+            title="decrease precision"
+            onClick={() => setBooksPrecision(precision - 1)}
+          >
+            -
+          </div>
+        </div>
         <div style={booksSideStyle}>
           {header}
           {renderedBooksSmaller}

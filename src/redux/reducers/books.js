@@ -1,7 +1,8 @@
-import { SET_BOOK } from "../action-types";
+import { SET_BOOK, SET_BOOKS_PRECISION } from "../action-types";
 
 const initialState = {
-  booksByPrice: new Map()
+  booksByPrice: new Map(),
+  precision: 0
 };
 
 export default function(state = initialState, action) {
@@ -15,6 +16,15 @@ export default function(state = initialState, action) {
       return {
         ...state,
         booksByPrice: newBooksByPrice
+      };
+    }
+
+    case SET_BOOKS_PRECISION: {
+      const precision = action.payload > 0 ? 0 : action.payload;
+
+      return {
+        ...state,
+        precision
       };
     }
 

@@ -1,6 +1,9 @@
 import Books from "../components/Books.js";
 import { connect } from "react-redux";
+import { setBooksPrecision } from "../redux/actions.js";
 
+//
+//
 const mapStateToProps = (state, ownProps) => {
   const ticker = state.tickers.tickersByPair.get(ownProps.pair);
   let lastPrice;
@@ -10,8 +13,22 @@ const mapStateToProps = (state, ownProps) => {
   }
   return {
     booksByPrice: state.books.booksByPrice,
+    precision: state.books.precision,
     lastPrice
   };
 };
 
-export default connect(mapStateToProps)(Books);
+//
+//
+const mapDispatchToProps = dispatch => ({
+  setBooksPrecision: function() {
+    dispatch(setBooksPrecision.apply(null, arguments));
+  }
+});
+
+//
+//
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Books);
