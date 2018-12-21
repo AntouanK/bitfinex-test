@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 const mainWrapperStyle = {
   flex: "0 0 auto",
-  minWidth: "300px",
+  minWidth: "250px",
   display: "flex",
   flexDirection: "column",
   margin: "10px",
@@ -37,7 +37,7 @@ class Trades extends Component {
 
     const tradesHeader = (
       <div style={tradeStyle()}>
-        <div style={cellStyle("140px")}>TIME</div>
+        <div style={cellStyle("100px")}>TIME</div>
         <div style={cellStyle("60px")}>PRICE</div>
         <div style={cellStyle("60px")}>AMOUNT</div>
       </div>
@@ -50,7 +50,7 @@ class Trades extends Component {
 
       return (
         <div key={ID} style={tradeStyle(mode)}>
-          <div style={cellStyle("140px")}>{timeString}</div>
+          <div style={cellStyle("100px")}>{timeString}</div>
           <div style={cellStyle("60px")}>{PRICE.toFixed(1)}</div>
           <div style={cellStyle("60px")}>{Math.abs(AMOUNT).toFixed(4)}</div>
         </div>
