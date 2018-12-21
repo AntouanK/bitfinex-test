@@ -13,7 +13,6 @@ const messageHandler = cb => msg => {
     if (chanId !== undefined) {
       channelInfoMap.set(chanId, { channel, pair, symbol });
       console.log("chanId", chanId, "is channel", channel);
-      console.log(msg);
     } else {
       if (Array.isArray(msgObject)) {
         chanId = msgObject[0];
@@ -34,6 +33,8 @@ const messageHandler = cb => msg => {
   }
 };
 
+//
+//
 const convertToTrade = row => ({
   ID: row[0],
   MTS: row[1],
@@ -41,6 +42,15 @@ const convertToTrade = row => ({
   PRICE: row[3],
   PERIOD: row[4]
 });
+
+//
+//
+const convertToBook = row => ({
+  PRICE: row[0],
+  COUNT: row[1],
+  AMOUNT: row[2]
+});
+
 //
 //
 const channelParser = ({ channelInfo, payload }) => {
@@ -79,6 +89,13 @@ const channelParser = ({ channelInfo, payload }) => {
       HIGH: row[8],
       LOW: row[9]
     };
+  } else if (channelInfo.channel === "book") {
+    if (Array.isArray(payload[0])) {
+      // list of books
+      newPayload = payload.map(convertToBook);
+    } else {
+      newPayload = [convertToBook(payload)];
+    }
   } else {
     throw new Error("unknown channel");
   }
@@ -107,6 +124,13 @@ const initiate = cb => {
       symbol: "tBTCUSD"
     });
     wss.send(msgSubTrades);
+
+    let msgSubBook = JSON.stringify({
+      event: "subscribe",
+      channel: "book",
+      symbol: "tBTCUSD"
+    });
+    wss.send(msgSubBook);
   };
   //----------------------------------------------------
 };
