@@ -1,5 +1,23 @@
 import React, { Component } from "react";
 
+const mainWrapperStyle = {
+  display: "flex",
+  flexDirection: "row",
+  margin: "10px",
+  padding: "10px",
+  backgroundColor: "#1f2228"
+};
+const columnStyle = {
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "space-around",
+  margin: "0 10px"
+};
+const pairStyle = { fontSize: "x-large" };
+const lastPriceStyle = { fontSize: "x-large" };
+
+//
+//
 class Ticker extends Component {
   render() {
     const { notFound, pair, volume, priceChange, lastPrice } = this.props;
@@ -8,12 +26,31 @@ class Ticker extends Component {
     if (notFound === true) {
       content = <div>not found</div>;
     } else {
+      const priceChangeStyle = {
+        color: priceChange < 0 ? "red" : "green"
+      };
+
       content = (
-        <div>
-          <div>pair: {pair}</div>
-          <div>volume: {volume}</div>
-          <div>priceChange: {priceChange}%</div>
-          <div>lastPrice: {lastPrice}</div>
+        <div style={mainWrapperStyle}>
+          <div style={columnStyle}>
+            <div style={pairStyle}>{pair}</div>
+            <div style={{ opacity: 0.7 }}>
+              VOL
+              <span
+                style={{
+                  textDecoration: "underline",
+                  margin: "0 4px"
+                }}
+              >
+                {volume.toFixed(3)}
+              </span>{" "}
+              USD
+            </div>
+          </div>
+          <div style={columnStyle}>
+            <div style={lastPriceStyle}>{lastPrice}</div>
+            <div style={priceChangeStyle}>{priceChange}%</div>
+          </div>
         </div>
       );
     }

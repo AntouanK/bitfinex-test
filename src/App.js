@@ -24,9 +24,8 @@ class App extends Component {
     return (
       <Provider store={store}>
         <div className="App">
-          <header className="App-header">
-            <TickerContainer pair="BTCUSD" />
-          </header>
+          <p>Bitfinex test</p>
+          <TickerContainer pair="BTCUSD" />
         </div>
       </Provider>
     );
