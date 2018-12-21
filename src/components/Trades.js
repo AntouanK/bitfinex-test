@@ -1,4 +1,11 @@
 import React, { Component } from "react";
+import {
+  widgetBackground,
+  lightRed1,
+  lightRed2,
+  lightGreen1,
+  lightGreen2
+} from "../colors.js";
 const BIG_TRANSACTION = 1;
 
 const mainWrapperStyle = {
@@ -8,7 +15,7 @@ const mainWrapperStyle = {
   flexDirection: "column",
   margin: "10px",
   padding: "10px",
-  backgroundColor: "#1b262d"
+  backgroundColor: widgetBackground
 };
 const tradeStyle = mode => ({
   flex: "1 0 16px",
@@ -18,13 +25,13 @@ const tradeStyle = mode => ({
   alignItems: "center",
   backgroundColor:
     mode === "buy"
-      ? "rgba(157, 194, 74, 0.05)"
+      ? lightGreen1
       : mode === "buy-l"
-        ? "rgba(157, 194, 74, 0.25)"
+        ? lightGreen2
         : mode === "sell"
-          ? "rgba(225, 86, 86, 0.11)"
+          ? lightRed1
           : mode === "sell-l"
-            ? "rgba(225, 86, 86, 0.31)"
+            ? lightRed2
             : ""
 });
 const cellStyle = width => ({

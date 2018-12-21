@@ -1,11 +1,12 @@
 import React, { Component } from "react";
+import { widgetBackground, lightRed2, lightGreen2 } from "../colors.js";
 
 const mainWrapperStyle = {
   display: "flex",
   flexDirection: "row",
   margin: "10px",
   padding: "10px",
-  backgroundColor: "#1b262d"
+  backgroundColor: widgetBackground
 };
 const columnStyle = {
   display: "flex",
@@ -27,7 +28,7 @@ class Ticker extends Component {
       content = <div style={mainWrapperStyle}>not found</div>;
     } else {
       const priceChangeStyle = {
-        color: priceChange < 0 ? "red" : "green"
+        color: priceChange < 0 ? lightRed2 : lightGreen2
       };
 
       content = (

@@ -3,6 +3,7 @@ import { Provider } from "react-redux";
 import store from "./redux/store";
 import TickerContainer from "./components/TickerContainer.js";
 import TradesContainer from "./components/TradesContainer.js";
+import BooksContainer from "./components/BooksContainer.js";
 import { initiate } from "./websocket.js";
 import "./App.css";
 
@@ -29,8 +30,15 @@ class App extends Component {
       <Provider store={store}>
         <div className="App">
           <p>Bitfinex test</p>
-          <TickerContainer pair="BTCUSD" />
-          <TradesContainer />
+          <div style={{ display: "flex", flexDirection: "row" }}>
+            <div>
+              <BooksContainer pair="BTCUSD" />
+            </div>
+            <div>
+              <TickerContainer pair="BTCUSD" />
+              <TradesContainer />
+            </div>
+          </div>
         </div>
       </Provider>
     );
