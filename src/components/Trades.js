@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+const BIG_TRANSACTION = 1;
 
 const mainWrapperStyle = {
   flex: "0 0 auto",
@@ -51,11 +52,11 @@ class Trades extends Component {
       //const dateString = mtsDate.toDateString();
       const timeString = mtsDate.toTimeString().slice(0, 8);
       const mode =
-        AMOUNT >= 1
+        AMOUNT >= BIG_TRANSACTION
           ? "buy-l"
           : AMOUNT > 0
             ? "buy"
-            : AMOUNT <= -1
+            : AMOUNT <= -BIG_TRANSACTION
               ? "sell-l"
               : AMOUNT <= 0
                 ? "sell"
