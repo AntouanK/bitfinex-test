@@ -49,7 +49,7 @@ class Ticker extends Component {
           </div>
           <div style={columnStyle}>
             <div style={lastPriceStyle}>{lastPrice.toFixed(3)}</div>
-            <div style={priceChangeStyle}>{priceChange}%</div>
+            <div style={priceChangeStyle}>{priceChange.toFixed(2)}%</div>
           </div>
         </div>
       );
