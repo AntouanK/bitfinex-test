@@ -1,12 +1,14 @@
 .App {
+  font-family: "Roboto", sans-serif;
+  font-size: 12px;
   text-align: center;
-  background-color: #282c34;
+  background-color: #2c3940;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
   align-items: center;
   justify-content: center;
-  color: #fdfdfd;
+  color: #c4c7c9;
 }
 
 

@@ -34,6 +34,13 @@ const messageHandler = cb => msg => {
   }
 };
 
+const convertToTrade = row => ({
+  ID: row[0],
+  MTS: row[1],
+  AMOUNT: row[2],
+  PRICE: row[3],
+  PERIOD: row[4]
+});
 //
 //
 const channelParser = ({ channelInfo, payload }) => {
@@ -46,21 +53,18 @@ const channelParser = ({ channelInfo, payload }) => {
     let code, row;
     if (payload.length === 1) {
       row = payload[0];
+      newPayload = {
+        code,
+        trades: row.map(convertToTrade)
+      };
     } else {
       code = payload[0];
       row = payload[1];
+      newPayload = {
+        code,
+        trades: [convertToTrade(row)]
+      };
     }
-
-    newPayload = {
-      code,
-      trade: {
-        ID: row[0],
-        MTS: row[1],
-        AMOUNT: row[2],
-        PRICE: row[3],
-        PERIOD: row[4]
-      }
-    };
   } else if (channelInfo.channel === "ticker") {
     let row = payload.pop();
     newPayload = {

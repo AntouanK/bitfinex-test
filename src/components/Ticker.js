@@ -5,7 +5,7 @@ const mainWrapperStyle = {
   flexDirection: "row",
   margin: "10px",
   padding: "10px",
-  backgroundColor: "#1f2228"
+  backgroundColor: "#1b262d"
 };
 const columnStyle = {
   display: "flex",
@@ -24,7 +24,7 @@ class Ticker extends Component {
     let content;
 
     if (notFound === true) {
-      content = <div>not found</div>;
+      content = <div style={mainWrapperStyle}>not found</div>;
     } else {
       const priceChangeStyle = {
         color: priceChange < 0 ? "red" : "green"
@@ -48,7 +48,7 @@ class Ticker extends Component {
             </div>
           </div>
           <div style={columnStyle}>
-            <div style={lastPriceStyle}>{lastPrice}</div>
+            <div style={lastPriceStyle}>{lastPrice.toFixed(3)}</div>
             <div style={priceChangeStyle}>{priceChange}%</div>
           </div>
         </div>
