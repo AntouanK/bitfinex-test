@@ -1,13 +1,16 @@
 import React, { Component } from "react";
 import { Provider } from "react-redux";
 import store from "./redux/store";
+import { setBook, setTicker, setTrade } from "./redux/actions.js";
 import TickerContainer from "./components/TickerContainer.js";
 import TradesContainer from "./components/TradesContainer.js";
 import BooksContainer from "./components/BooksContainer.js";
 import { initiate } from "./websocket.js";
 import "./App.css";
 
-import { setBook, setTicker, setTrade } from "./redux/actions.js";
+//
+// handle the websocket messages here, and dispatch actions to get the
+// data in the state
 const wsMessageHandler = ({ channelInfo, payload }) => {
   if (channelInfo.channel === "ticker") {
     store.dispatch(setTicker({ channelInfo, payload }));
