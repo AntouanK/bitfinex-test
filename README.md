@@ -22,6 +22,8 @@ Overview
 Create a web application that replicates the Order Book, Trades and Ticker widgets functionality from the Trading page of the Bitfinex website.
 https://www.bitfinex.com/trading
 
+![image_1](https://lh4.googleusercontent.com/7ZxBj7VY-JL-Ug---Kgp1YAgp07kQb38MxRSMrQVBy4JBAZcZiuN52ibAzA2-5kMcp2gdljHvHWi6ybZ54mPl18hmdN2xUnpxvv3--zf3LJxr8F_xQyY-0jcJwo1W6gbA9NO_GQ9=w1287-h1460)
+
 Order Book
 Similarly to the book from the website, the created Order Book should have the ability to change precision of the price column, and to change scaling of the depth bars. Price alerts management and layout configuration features are not required.
 Trades
@@ -32,7 +34,7 @@ Ticker
 
 The ticker is a small widget that shows the current trade pair, 24 hours volume, 24 hours price change in percents, and last price for that pair.
 
-
+[ticker](https://lh3.googleusercontent.com/w2J_v7540LdaaGsdstgDmF05opJrKK56fzaVl2XacELAzdlDZGFe9fjujbR7mVSXvfro-jefJmV0JnwGShqrgRnqv90Jlyi0hoccsBka2SQ3qHISPctkXF3Plv2DheroxcqOlm9r)
 
 General Requirements
 
